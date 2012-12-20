@@ -59,68 +59,10 @@ qx.Class.define("labs.Application",
 
 			// Document is the application root
 			var doc = this.getRoot();
-			var size = 160;
-			var corte = Math.floor(size * 0.55);
-			
-			var fntHora = qx.bom.Font.fromString(size + "px bold Arial");
-			
-			var lyCell = new qx.ui.layout.Canvas();
-			var cnCell = new qx.ui.container.Composite(lyCell);
-			
-			doc.add(cnCell,{edge:0});
-			
-			var lblDigU = new qx.ui.basic.Label("8");
-			var lblDigD = new qx.ui.basic.Label("8");
-			cnCell.add(lblDigD);
-			cnCell.add(lblDigU);
-			
-			var lblDigUn = new qx.ui.basic.Label("7");
-			var lblDigDn = new qx.ui.basic.Label("7");
-			cnCell.add(lblDigDn);
-			cnCell.add(lblDigUn);
-			
-			lblDigUn.set(
-			{
-				BackgroundColor:"#202020",
-				TextColor:"#ff7000",
-				AlignX:"center",
-				AlignY:"top",
-				Font:fntHora,
-				Height:corte
-			});
-		
-			
-			lblDigDn.set(
-			{
-				BackgroundColor:"#202020",
-//				TextColor:"#0070ff",
-				TextColor:"#ff7000",
-				AlignX:"center",
-				AlignY:"top",
-				Font:fntHora
-			});
-			
-			lblDigU.set(
-			{
-				BackgroundColor:"#202020",
-				TextColor:"#ff7000",
-				AlignX:"center",
-				AlignY:"top",
-				Font:fntHora,
-				Height:corte
-			});
-		
-			
-			lblDigD.set(
-			{
-				BackgroundColor:"#202020",
-//				TextColor:"#0070ff",
-				TextColor:"#ff7000",
-				AlignX:"center",
-				AlignY:"top",
-				Font:fntHora
-			});
-			
+			var digito = new labs.Digito.Digito();
+			doc.add(digito);
+
+	/*			
 			qx.event.Timer.once(function(e)
 			{
 				qx.bom.element.Clip.set(lblDigU.getContentElement().getDomElement(),{height:corte*0.99});
@@ -133,7 +75,7 @@ qx.Class.define("labs.Application",
 				lblDigUn.hide();
 				lblDigDn.hide();
 			},this,1000);
-			
+	*/		
 	/*			
 			// Ligamos o timer
 			var tmTimer = new qx.event.Timer(1000);
