@@ -97,6 +97,13 @@ qx.Class.define("labs.Digito.Digito",
 			qx.bom.element.Clip.set(this._lblDigUn.getContentElement().getDomElement(),{height:this._corte*0.99});
 			qx.bom.element.Clip.set(this._lblDigDn.getContentElement().getDomElement(),{top:this._corte*1.01});
 		},this,10);
+		
+		// Animação do flip
+		// Metade superior caindo até o meio
+		this.anim_a = new qx.bom.AnimationFrame();
+		
+		// Metade superior caindo do meio ao fim.
+		this.anim_b = new qx.bom.AnimationFrame();
 	},
 
 
@@ -112,50 +119,28 @@ qx.Class.define("labs.Digito.Digito",
 	{
 		status : { check : "Integer" },
 
-		label :
+		currentDigit :
 		{
 			check : "String",
-			apply : "_applyLabel"
+			apply : "_applyCurrentDigit"
 		},
 
-		barWidth :
-		{
-			check : "Integer",
-			apply : "_applyBarWidth"
-		},
-
-		showStepStatus :
-		{
-			check : "Boolean",
-			init  : false,
-			apply : "_applyShowStepStatus"
-		},
-
-		stepStatus :
+		nextDigit :
 		{
 			check : "String",
-			init  : "",
-			apply : "_applyStepStatus"
+			apply : "_applyNextDigit"
 		},
 
-		showPcntStatus :
-		{
-			check : "Boolean",
-			init  : false,
-			apply : "_applyShowPcntStatus"
-		},
-
-		pcntStatus :
-		{
-			check : "String",
-			init  : "",
-			apply : "_applyPcntStatus"
-		},
-
-		barColor :
+		bgColor :
 		{
 			check : "Color",
-			apply : "_applyBarColor"
+			apply : "_applyBgColor"
+		},
+		
+		fgColor :
+		{
+			check : "Color",
+			apply : "_applyFgColor"
 		}
 	},
 
@@ -176,9 +161,9 @@ qx.Class.define("labs.Digito.Digito",
 		* @type member
 		* @return {void}
 		*/
-		reset : function()
+		flip : function()
 		{
-			this.label.setValue("0");
+			
 		},
 
 
@@ -194,6 +179,10 @@ qx.Class.define("labs.Digito.Digito",
 			this.label.setValue(newLabel);
 		}
 
+		_applyBgColor : function(newBgColor) 
+		{
+			this.label.setValue(newLabel);
+		}
 
 	},
 
@@ -203,7 +192,9 @@ qx.Class.define("labs.Digito.Digito",
 		this._disposeObjects
 		(
 			"_lblDigU",
-			"_lblDigD"
+			"_lblDigD",
+			"_lblDigUn",
+			"_lblDigDn"
 		);
 	}
 });
